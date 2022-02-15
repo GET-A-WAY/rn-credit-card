@@ -71,7 +71,7 @@ const CreditCardForm: React.FC<LibraryProps> = (props) => {
   async function goNext() {
     if (focusedField === null) return
 
-    const field = ['cardNumber', 'holderName', 'expiration', 'cvv'][
+    const field = ['cardnumber', 'ccname', 'exp-date', 'cvc'][
       focusedField
     ]
 
@@ -127,7 +127,7 @@ const CreditCardForm: React.FC<LibraryProps> = (props) => {
           <FormTextField
             style={textFieldStyle}
             ref={cardNumberRef}
-            name="cardNumber"
+            name="cardnumber"
             label={translations.cardNumber}
             keyboardType="number-pad"
             autoCompleteType="cc-number"
@@ -153,8 +153,8 @@ const CreditCardForm: React.FC<LibraryProps> = (props) => {
             <FormTextField
               style={textFieldStyle}
               ref={holderNameRef}
-              name="holderName"
-              autoCompleteType="name"
+              name="ccname"
+              autoCompleteType="cc-name"
               label={translations.cardHolderName}
               rules={{
                 required: translations.cardHolderNameRequired,
@@ -181,7 +181,7 @@ const CreditCardForm: React.FC<LibraryProps> = (props) => {
                 },
               ]}
               ref={expirationRef}
-              name="expiration"
+              name="exp-date"
               label={translations.expiration}
               keyboardType="number-pad"
               autoCompleteType="cc-exp"
@@ -205,7 +205,7 @@ const CreditCardForm: React.FC<LibraryProps> = (props) => {
             <FormTextField
               style={textFieldStyle}
               ref={cvvRef}
-              name="cvv"
+              name="cvc"
               label={translations.securityCode}
               keyboardType="number-pad"
               autoCompleteType="cc-csc"
