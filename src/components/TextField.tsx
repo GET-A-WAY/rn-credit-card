@@ -29,9 +29,9 @@ const TextField = React.forwardRef<TextInput, Props>((props, ref) => {
   } = props
   const { inputColors = {}, fonts, overrides } = useContext(LibraryContext)
   const {
-    errored: errorColor = '#B00020',
-    focused: focusedColor = '#080F9C',
-    regular: regularColor = '#B9C4CA',
+    errored: errorColor = '#ff0000',
+    focused: focusedColor = '#2f2e2e',
+    regular: regularColor = '#666666',
   } = inputColors
 
   const [isFocused, setIsFocused] = useState(false)
@@ -41,8 +41,8 @@ const TextField = React.forwardRef<TextInput, Props>((props, ref) => {
   useEffect(() => {
     Animated.timing(focusAnim, {
       toValue: isFocused || !!value ? 1 : 0,
-      duration: 150,
-      easing: Easing.bezier(0.4, 0, 0.2, 1),
+      duration: 250,
+      easing: Easing.bezier(0.4, 0, 0.9, 1),
       useNativeDriver: true,
     }).start()
   }, [focusAnim, isFocused, value])
@@ -91,19 +91,19 @@ const TextField = React.forwardRef<TextInput, Props>((props, ref) => {
                 {
                   scale: focusAnim.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [1, 0.75],
+                    outputRange: [1, 0.70],
                   }),
                 },
                 {
                   translateY: focusAnim.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [24, -12],
+                    outputRange: [7, -27],
                   }),
                 },
                 {
                   translateX: focusAnim.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [16, 0],
+                    outputRange: [0, -label?.length * 1.5],
                   }),
                 },
               ],
@@ -129,38 +129,34 @@ const TextField = React.forwardRef<TextInput, Props>((props, ref) => {
       {endEnhancer && (
         <View style={styles.enhancerContainer}>{endEnhancer}</View>
       )}
-      {!!errorText && (
-        <Text style={[styles.error, overrides.errorText]}>{errorText}</Text>
-      )}
+      <Text style={[styles.error, overrides.errorText]}>{errorText}</Text>
     </View>
   )
 })
 
 const styles = StyleSheet.create({
   input: {
-    padding: 24,
-    borderWidth: 1,
-    borderRadius: 4,
-    fontSize: 16,
+    height: 40,
+    borderBottomWidth: 1,
+    fontSize: 17,
+    includeFontPadding: false,
   },
   labelContainer: {
     position: 'absolute',
-    paddingHorizontal: 8,
     backgroundColor: 'white',
   },
   label: {
-    fontSize: 14,
+    paddingTop: 6,
+    fontSize: 15,
   },
   enhancerContainer: {
     position: 'absolute',
-    top: 12,
-    right: 16,
+    right: 0,
   },
   error: {
     marginTop: 4,
-    marginLeft: 12,
     fontSize: 12,
-    color: '#B00020',
+    color: 'red',
   },
 })
 
