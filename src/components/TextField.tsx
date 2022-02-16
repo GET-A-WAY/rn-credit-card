@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
   },
   labelContainer: {
     position: 'absolute',
-    backgroundColor: 'white',
   },
   label: {
     paddingTop: 6,

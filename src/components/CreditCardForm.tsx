@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 12,
+    marginHorizontal: 5,
   },
   row: {
     flex: 1,
