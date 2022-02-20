@@ -23,6 +23,8 @@ import FormCard from './FormCard'
 import { getTranslations } from '../utils/translations'
 import { CardFields, LibraryProps } from '../types'
 
+const CARD_HOLDER_REGEX = /^([ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜŸäëïöüŸ¡¿çÇŒœßØøÅåÆæÞþÐða-zA-Z-.]+\s+[ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜŸäëïöüŸ¡¿çÇŒœßØøÅåÆæÞþÐða-zA-Z-.]+\s*([ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜŸäëïöüŸ¡¿çÇŒœßØøÅåÆæÞþÐða-zA-Z-.]*\s*)*)$/;
+
 const CreditCardForm: React.FC<LibraryProps> = (props) => {
   const {
     horizontalStart = true,
@@ -161,7 +163,7 @@ const CreditCardForm: React.FC<LibraryProps> = (props) => {
                 validate: {
                   isValid: (value: string) => {
                     return (
-                      cardValidator.cardholderName(value).isValid ||
+                      CARD_HOLDER_REGEX.test(value) ||
                       translations.cardHolderNameInvalid
                     )
                   },
